@@ -15,7 +15,6 @@ type BookFormData = {
 
 export default function AddBookPage() {
   const router = useRouter();
-
   const [serverError, setServerError] = useState('');
 
   async function handleCreate(data: BookFormData) {
@@ -45,13 +44,14 @@ export default function AddBookPage() {
       setServerError('Something went wrong. Please try again.');
     }
   }
-  return (
-    <main>
-      <h1>Add a New Book</h1>
 
-      {serverError && <p>{serverError}</p>}
+  return (
+    <div className="form-page">
+      <h1 className="page-title">Add a New Book</h1>
+
+      {serverError && <div className="server-error">{serverError}</div>}
 
       <BookForm onSubmit={handleCreate} />
-    </main>
+    </div>
   );
 }

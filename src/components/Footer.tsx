@@ -1,7 +1,10 @@
 export default function Footer() {
   return (
-    <footer>
-      <p>OpenShelf &copy; {new Date().getFullYear()}</p>
+    <footer className="site-footer">
+      <p>
+        OpenShelf &copy; {new Date().getFullYear()} &mdash; Your digital
+        bookshelf
+      </p>
     </footer>
   );
 }

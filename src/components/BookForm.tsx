@@ -63,8 +63,8 @@ export default function BookForm({ initialValues, onSubmit }: BookFormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form className="book-form" onSubmit={handleSubmit}>
+      <div className="form-group">
         <label htmlFor="title">Title</label>
         <input
           type="text"
@@ -73,10 +73,10 @@ export default function BookForm({ initialValues, onSubmit }: BookFormProps) {
           value={formData.title}
           onChange={handleChange}
         />
-        {errors.title && <p>{errors.title}</p>}
+        {errors.title && <span className="field-error">{errors.title}</span>}
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="author">Author</label>
         <input
           type="text"
@@ -85,10 +85,10 @@ export default function BookForm({ initialValues, onSubmit }: BookFormProps) {
           value={formData.author}
           onChange={handleChange}
         />
-        {errors.author && <p>{errors.author}</p>}
+        {errors.author && <span className="field-error">{errors.author}</span>}
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="isbn">ISBN</label>
         <input
           type="text"
@@ -97,10 +97,10 @@ export default function BookForm({ initialValues, onSubmit }: BookFormProps) {
           value={formData.isbn}
           onChange={handleChange}
         />
-        {errors.isbn && <p>{errors.isbn}</p>}
+        {errors.isbn && <span className="field-error">{errors.isbn}</span>}
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="category">Category</label>
         <input
           type="text"
@@ -109,10 +109,12 @@ export default function BookForm({ initialValues, onSubmit }: BookFormProps) {
           value={formData.category}
           onChange={handleChange}
         />
-        {errors.category && <p>{errors.category}</p>}
+        {errors.category && (
+          <span className="field-error">{errors.category}</span>
+        )}
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="publicationYear">Publication Year</label>
         <input
           type="number"
@@ -121,10 +123,12 @@ export default function BookForm({ initialValues, onSubmit }: BookFormProps) {
           value={formData.publicationYear}
           onChange={handleChange}
         />
-        {errors.publicationYear && <p>{errors.publicationYear}</p>}
+        {errors.publicationYear && (
+          <span className="field-error">{errors.publicationYear}</span>
+        )}
       </div>
 
-      <div>
+      <div className="form-group">
         <label htmlFor="description">Description</label>
         <textarea
           id="description"
@@ -132,10 +136,14 @@ export default function BookForm({ initialValues, onSubmit }: BookFormProps) {
           value={formData.description}
           onChange={handleChange}
         />
-        {errors.description && <p>{errors.description}</p>}
+        {errors.description && (
+          <span className="field-error">{errors.description}</span>
+        )}
       </div>
 
-      <button type="submit">Save Book</button>
+      <button type="submit" className="form-submit">
+        Save Book
+      </button>
     </form>
   );
 }

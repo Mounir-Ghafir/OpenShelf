@@ -1,10 +1,9 @@
-"use client";
+'use client';
 
 type SearchBarProps = {
   query: string;
   onSearch: (query: string) => void;
 };
-
 
 export default function SearchBar({ query, onSearch }: SearchBarProps) {
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -12,11 +11,14 @@ export default function SearchBar({ query, onSearch }: SearchBarProps) {
   }
 
   return (
-    <div>
-      <label htmlFor="search">Search by title or author</label>
+    <div className="search-container">
+      <label htmlFor="search" className="search-label">
+        Search by title or author
+      </label>
       <input
         type="text"
         id="search"
+        className="search-input"
         placeholder="Type to search..."
         value={query}
         onChange={handleChange}

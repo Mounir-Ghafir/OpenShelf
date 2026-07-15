@@ -21,9 +21,7 @@ export default function EditBookPage() {
   const bookId = params.id;
 
   const [initialValues, setInitialValues] = useState<BookFormData | null>(null);
-
   const [serverError, setServerError] = useState('');
-
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -85,23 +83,25 @@ export default function EditBookPage() {
   }
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className="loading-text">Loading...</p>;
   }
 
   if (!initialValues) {
     return (
-      <main>
-        <h1>Edit Book</h1>
-        <p>{serverError || 'Book not found.'}</p>
-      </main>
+      <div className="form-page">
+        <h1 className="page-title">Edit Book</h1>
+        <div className="server-error">{serverError || 'Book not found.'}</div>
+      </div>
     );
   }
 
   return (
-    <main>
-      <h1>Edit Book</h1>
-      {serverError && <p>{serverError}</p>}
+    <div className="form-page">
+      <h1 className="page-title">Edit Book</h1>
+
+      {serverError && <div className="server-error">{serverError}</div>}
+
       <BookForm initialValues={initialValues} onSubmit={handleUpdate} />
-    </main>
+    </div>
   );
 }

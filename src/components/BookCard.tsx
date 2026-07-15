@@ -14,6 +14,22 @@ type BookCardProps = {
   onDelete: (bookId: string) => void;
 };
 
+const cardColors = [
+  'color-red',
+  'color-green',
+  'color-blue',
+  'color-gold',
+  'color-wood',
+];
+
+function getColorClass(id: string) {
+  let hash = 0;
+  for (let i = 0; i < id.length; i++) {
+    hash = id.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return cardColors[Math.abs(hash) % cardColors.length];
+}
+
 export default function BookCard({ book, onDelete }: BookCardProps) {
   async function handleDelete() {
     const confirmed = window.confirm(
@@ -43,15 +59,35 @@ export default function BookCard({ book, onDelete }: BookCardProps) {
   }
 
   return (
-    <div>
-      <h2>{book.title}</h2>
-      <p>Author: {book.author}</p>
-      <p>Category: {book.category}</p>
-      <p>Year: {book.publicationYear}</p>
-      <p>Status: {book.available ? 'Available' : 'Borrowed'}</p>
-      <Link href={`/books/${book._id}`}>View Details</Link>
-      <Link href={`/books/edit/${book._id}`}>Edit</Link>
-      <button onClick={handleDelete}>Delete</button>
+    <div className={`book-card ${getColorClass(book._id)}`}>
+      <div className="book-card-header">
+        <h2 className="book-card-title">{book.title}</h2>
+        <span
+          className={`book-status-badge ${book.available ? 'available' : 'borrowed'}`}
+        >
+          {book.available ? 'Available' : 'Borrowed'}
+        </span>
+      </div>
+
+      <p className="book-card-meta">
+        by <span>{book.author}</span>
+      </p>
+      <p className="book-card-meta">
+        Year: <span>{book.publicationYear}</span>
+      </p>
+      <span className="book-card-category">{book.category}</span>
+
+      <div className="book-card-actions">
+        <Link href={`/books/${book._id}`} className="action-view">
+          View Details
+        </Link>
+        <Link href={`/books/edit/${book._id}`} className="action-edit">
+          Edit
+        </Link>
+        <button onClick={handleDelete} className="action-delete">
+          Delete
+        </button>
+      </div>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 type FilterProps = {
   current: string;
@@ -7,22 +7,22 @@ type FilterProps = {
 
 export default function Filter({ current, onFilter }: FilterProps) {
   return (
-    <div>
+    <div className="filter-bar">
       <button
-        onClick={() => onFilter("all")}
-        style={{ fontWeight: current === "all" ? "bold" : "normal" }}
+        className={`filter-btn${current === 'all' ? ' active' : ''}`}
+        onClick={() => onFilter('all')}
       >
         All
       </button>
       <button
-        onClick={() => onFilter("available")}
-        style={{ fontWeight: current === "available" ? "bold" : "normal" }}
+        className={`filter-btn${current === 'available' ? ' active' : ''}`}
+        onClick={() => onFilter('available')}
       >
         Available
       </button>
       <button
-        onClick={() => onFilter("borrowed")}
-        style={{ fontWeight: current === "borrowed" ? "bold" : "normal" }}
+        className={`filter-btn${current === 'borrowed' ? ' active' : ''}`}
+        onClick={() => onFilter('borrowed')}
       >
         Borrowed
       </button>
